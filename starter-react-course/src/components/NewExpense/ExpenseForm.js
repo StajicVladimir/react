@@ -6,6 +6,8 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+
+  const [hideNewExpenseForm, setHideNewExpenseForm] = useState(true);
   // const [userInput, setUserInput] = useState({
   //   enteredTitle: '',
   //   enteredAmount: '',
@@ -39,6 +41,14 @@ const ExpenseForm = (props) => {
     // })
   };
 
+  const newExpenseButtonClickHandler = () => {
+    setHideNewExpenseForm(false);
+  };
+
+  const cancelButtonHandler = () => {
+    setHideNewExpenseForm(true);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -53,8 +63,15 @@ const ExpenseForm = (props) => {
     setEnteredTitle('');
     setEnteredAmount('');
     setEnteredDate('');
+    setHideNewExpenseForm(true);
   };
 
+
+  if(hideNewExpenseForm){
+    return <div className="new-expense__action">
+        <button onClick={newExpenseButtonClickHandler}>Add New Expense</button>
+    </div>
+  }
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
@@ -88,6 +105,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__action">
+      <button onClick={cancelButtonHandler}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
