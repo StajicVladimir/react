@@ -7,46 +7,16 @@ const ExpenseForm = (props) => {
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
 
-  const [hideNewExpenseForm, setHideNewExpenseForm] = useState(true);
-  // const [userInput, setUserInput] = useState({
-  //   enteredTitle: '',
-  //   enteredAmount: '',
-  //   enteredDate: ''
-  // });
-
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   enteredTitle: event.target.value
-    // })
-    // setUserInput((prevState) => {
-    //   return {...prevState, enteredTitle: event.target.value};
-    // });
   };
 
   const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   enteredAmount: event.target.value
-    // })
   };
 
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   enteredDate: event.target.value
-    // })
-  };
-
-  const newExpenseButtonClickHandler = () => {
-    setHideNewExpenseForm(false);
-  };
-
-  const cancelButtonHandler = () => {
-    setHideNewExpenseForm(true);
   };
 
   const submitHandler = (event) => {
@@ -63,15 +33,8 @@ const ExpenseForm = (props) => {
     setEnteredTitle('');
     setEnteredAmount('');
     setEnteredDate('');
-    setHideNewExpenseForm(true);
   };
 
-
-  if(hideNewExpenseForm){
-    return <div className="new-expense__action">
-        <button onClick={newExpenseButtonClickHandler}>Add New Expense</button>
-    </div>
-  }
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
@@ -105,7 +68,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__action">
-      <button onClick={cancelButtonHandler}>Cancel</button>
+      <button onClick={props.onCancel}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
