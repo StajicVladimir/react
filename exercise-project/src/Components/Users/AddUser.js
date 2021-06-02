@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -8,22 +8,18 @@ import Wrapper from '../Helpers/Wrapper';
 import classes from "./AddUser.module.css";
 
 const AddUser = (props) => {
-  const [enteredUserName, setEnteredUserName] = useState("");
-  const [enteredUserAge, setEnteredUserAge] = useState("");
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
   const [error, setError] = useState();
-
-  const enteredUserNameHandler = (event) => {
-    setEnteredUserName(event.target.value);
-  };
-
-  const enteredUserAgeHandler = (event) => {
-    setEnteredUserAge(event.target.value);
-  };
 
   const addUserHandler = (event) => {
     event.preventDefault();
+    const enteredUserName = nameInputRef.current.value;
+    const enteredUserAge = ageInputRef.current.value;
+
     if (
-      enteredUserAge.trim().length === 0 ||
+      enteredUserName.trim().length === 0 ||
       enteredUserAge.trim().length === 0
     ) {
       setError({title: "Invalid input", content: "Please enter valid name and age (non-empty)"})
@@ -46,8 +42,8 @@ const AddUser = (props) => {
   };
 
   const clearUserNameAndAge = () => {
-    setEnteredUserName("");
-    setEnteredUserAge("");
+    nameInputRef.current.value = '';
+    ageInputRef.current.value = '';
   }
   return (
     <Wrapper>
@@ -58,15 +54,13 @@ const AddUser = (props) => {
           <input
             id="username"
             type="text"
-            onChange={enteredUserNameHandler}
-            value={enteredUserName}
+            ref = {nameInputRef}
           ></input>
           <label htmlFor="age">Age (nanoseconds)</label>
           <input
             id="age"
             type="number"
-            onChange={enteredUserAgeHandler}
-            value={enteredUserAge}
+            ref={ageInputRef}
           ></input>
           <Button type="submit">Add User</Button>
         </form>
