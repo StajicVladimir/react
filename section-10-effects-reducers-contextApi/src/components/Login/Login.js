@@ -36,9 +36,6 @@ const Login = (props) => {
   const [emailState, dispatchEmail] = useReducer(emailReducer, {value: '', isValid: undefined});
 
   const [passwordState, dispatchPassword] = useReducer(passwordReducer, {value: '', isValid: undefined});
-
-  const { isValid: emailIsValid} = emailState;
-  const { isValid: passwordIsValid} = passwordState;
   
   useEffect(() => {
     const timerIdentifier = setTimeout(() => {
