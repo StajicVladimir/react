@@ -3,6 +3,7 @@ import React from 'react';
 import classes from './Button.module.css';
 
 const Button = (props) => {
+  console.log('BUTTON running');
   return (
     <button
       type={props.type || 'button'}
@@ -14,5 +15,10 @@ const Button = (props) => {
     </button>
   );
 };
-
-export default Button;
+// ovde ovaj memo ne radi nista!
+//u App komponenti smo poslali funkciju kao prop ali svaki put
+//kada se App.js ponovo renderuje jer se promenio state (koji se menja u ovoj funkciji)
+// sve se izvrsi ponovo, funkcija se ponovo napravi i iako radi sve isto
+//nije ista funkcija i zbog toga se props ovde promeni i svakako se renderuje opet
+//My paragraph se nece ponovo renderovati jer je boolean, String bla primitive type u JS
+export default React.memo(Button);
