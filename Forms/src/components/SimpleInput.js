@@ -1,50 +1,62 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const SimpleInput = (props) => {
-  const nameInputRef = useRef();
   const [enteredName, setEnteredName] = useState("");
-  const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 
-  useEffect(() => {
-    if (enteredNameIsValid) {
-      console.log("Name Input is Valid!");
-    }
-  }, [enteredNameIsValid]);
+  const enteredNameIsValid = enteredName.trim() !== '';
+  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
+
+  let formIsValid = false;
+  //It looks stupid because there is only one input! 
+  //with more inputs we need to check all of them in if
+  if(enteredNameIsValid) {
+    formIsValid = true;
+  }
+
+  // useEffect(() => {
+  //   //we only have one field here -name- if we had some more inputs
+  //   //then add them to dependency for effect *on end between [ ]*
+  //   //and check the validity of ALL inputs here
+  //   if (enteredNameIsValid) {
+  //     setFormIsValid(true);
+  //   } else {
+  //     setFormIsValid(false);
+  //   }
+  // }, [enteredNameIsValid])
+
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
+  };
+
+  const nameInputBlurHandler = event => {
+    setEnteredNameTouched(true);
   };
 
   const formSubmissionHandler = (event) => {
     event.preventDefault();
     setEnteredNameTouched(true);
-    
-    if (enteredName.trim() === "") {
-      setEnteredNameIsValid(false);
+    if(!enteredNameIsValid) {
       return;
     }
-    setEnteredNameIsValid(true);
+
     console.log(enteredName);
-
-    const enteredValue = nameInputRef.current.value;
-
-    console.log(enteredValue);
-
     setEnteredName("");
+    setEnteredNameTouched(false);
   };
-  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
-
+  
   const nameInputClasses = nameInputIsInvalid
-    ? "form-control invalidl"
+    ? "form-control invalid"
     : "form-control";
+
   return (
     <form onSubmit={formSubmissionHandler}>
       <div className={nameInputClasses}>
         <label htmlFor="name">Your Name</label>
         <input
-          ref={nameInputRef}
           type="text"
           id="name"
+          onBlur={nameInputBlurHandler}
           onChange={nameInputChangeHandler}
           value={enteredName}
         />
@@ -53,7 +65,7 @@ const SimpleInput = (props) => {
         )}
       </div>
       <div className="form-actions">
-        <button>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
