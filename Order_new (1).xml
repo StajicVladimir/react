@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Header/>
+	<soapenv:Body>
+		<Create xmlns="urn:microsoft-dynamics-schemas/page/quicksalesorder">
+			<QuickSalesOrder>
+				<External_Document_No>1990003</External_Document_No>
+				<Order_Date>2021-06-10</Order_Date>
+				<Order_Time>11:05:05</Order_Time>
+				<Sell_to_Country_Region_Code>AT</Sell_to_Country_Region_Code>
+				<Sell_to_Cust_Salutation_Code>H</Sell_to_Cust_Salutation_Code>
+				<Sell_to_Customer_No/>
+				<Sell_to_Customer_Name>Peter Bogsen</Sell_to_Customer_Name>
+				<Sell_to_Customer_First_Name>Peter</Sell_to_Customer_First_Name>
+				<Sell_to_Customer_Surname>Bogsen</Sell_to_Customer_Surname>
+				<Sell_to_Customer_Name_2/>
+				<Sell_to_Street>Drachenweg</Sell_to_Street>
+				<Sell_to_House_No>2</Sell_to_House_No>
+				<Sell_to_Address>Drachenweg 2</Sell_to_Address>
+				<Sell_to_Address_2/>
+				<Sell_to_City>Althofen</Sell_to_City>
+				<Sell_to_Post_Code>9330</Sell_to_Post_Code>
+				<Sell_to_Phone_No>0163456789123</Sell_to_Phone_No>
+				<Sell_to_E_Mail>peter.bogsen@test.de</Sell_to_E_Mail>
+				<Online_ID/>
+				<Birthday>1988-02-18</Birthday>
+				<Sell_to_Cust_Type>Person</Sell_to_Cust_Type>
+				<Amount>56.05</Amount>
+				<Shipping_Charge_free>true</Shipping_Charge_free>
+				<Payment_Method_Code>RG</Payment_Method_Code>
+				<PayPal_Transaction_ID/>
+				<Ship_to_Code/>
+				<Ship_to_Cust_Salutation_Code>H</Ship_to_Cust_Salutation_Code>
+				<Ship_to_Country_Region_Code>AT</Ship_to_Country_Region_Code>
+				<Ship_to_Name>Peter Bogsen</Ship_to_Name>
+				<Ship_to_Customer_First_Name>Peter</Ship_to_Customer_First_Name>
+				<Ship_to_Customer_Surname>Bogsen</Ship_to_Customer_Surname>
+				<Ship_to_Street>Drachenweg</Ship_to_Street>
+				<Ship_to_House_No>2</Ship_to_House_No>
+				<Ship_to_House_No_Adding/>
+				<Ship_to_Address>Drachenweg 2</Ship_to_Address>
+				<Ship_to_Address_2/>
+				<Ship_to_City>Althofen</Ship_to_City>
+				<Ship_to_Post_Code>9330</Ship_to_Post_Code>
+				<Ship_to_Phone_No>0163456789123</Ship_to_Phone_No>
+				<Shipping_Agent_Code>DHL</Shipping_Agent_Code>
+				<Language_Code>DEU</Language_Code>
+				<Prices_Including_VAT>true</Prices_Including_VAT>
+				<Promotion_Medium_No>DEHNER.AT</Promotion_Medium_No>
+				<Promotion_Medium_Trg_Grp_No>STD</Promotion_Medium_Trg_Grp_No>
+				<Shipping_Advice>Komplettlieferung</Shipping_Advice>
+				<ShipTo_is_SellTo>true</ShipTo_is_SellTo>
+				<Promotion_Code>nlreg-at-7k0d</Promotion_Code>
+				<InvoiceDiscountCalculation>FIX_AMOUNT</InvoiceDiscountCalculation>
+				<DiscountValue>5.0</DiscountValue>
+				<Hold_Order>false</Hold_Order>
+				<IsGiftCardSale>false</IsGiftCardSale>
+				<QuickSalesLines>
+					<Quick_Sales_Subform_WebService>
+						<Line_No>10000</Line_No>
+						<No>1249333</No>
+						<Description>V.FEIN.AD.PUTENHERZEN 100</Description>
+						<Description_2>Sorte Herzen|Leber</Description_2>
+						<Unit_of_Measure_Code>STCK</Unit_of_Measure_Code>
+						<Quantity>2</Quantity>
+						<Unit_Price>32.00</Unit_Price>
+						<Original_Price>32.00</Original_Price>
+						<Item_used_as>Item</Item_used_as>
+						<Permit_Discount>true</Permit_Discount>
+						<Expand_Set_Yes_No>true</Expand_Set_Yes_No>
+						<AutoReserve>true</AutoReserve>
+					</Quick_Sales_Subform_WebService>
+				</QuickSalesLines>
+				<OrderGiftCards/>
+				<DocumentValue>
+					<Quick_Sales_Sub_Doc_Val_WS>
+						<Line_No>0</Line_No>
+						<Entry_No>1</Entry_No>
+						<Identifier>DLE-PERCENT</Identifier>
+						<ValueCode>DLE-0001</ValueCode>
+						<ValueText>ABC111555888956</ValueText>
+						<ValueInteger>5</ValueInteger>
+						<ValueDecimal>2.95</ValueDecimal>						
+					</Quick_Sales_Sub_Doc_Val_WS>
+					<Quick_Sales_Sub_Doc_Val_WS>
+						<Line_No>0</Line_No>
+						<Entry_No>2</Entry_No>
+						<Identifier>DLE_CARDNO</Identifier>
+						<ValueText>1234567890</ValueText>
+					</Quick_Sales_Sub_Doc_Val_WS>
+				</DocumentValue>
+			</QuickSalesOrder>
+		</Create>
+	</soapenv:Body>
+</soapenv:Envelope>
