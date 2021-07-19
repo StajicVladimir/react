@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment,useEffect } from "react";
 import { useParams, Route, Link } from "react-router-dom";
 
 import HighlightedQuote from "../quotes/HighlightedQuote";
@@ -7,23 +7,37 @@ import { useRouteMatch } from "react-router";
 
 import Comment from "../comments/Comments";
 
-const DUMMY_QUOTES = [
-  { id: "q1", author: "Max", text: "this is a quote! NOT!" },
-  { id: "q2", author: "Foo", text: "Learning React is GREAT! mnah..." },
-];
+import useHttp from "../../hooks/use-http";
+import { getSingleQuote } from "../../lib/api";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const QuoteDetail = () => {
   const params = useParams();
   const match = useRouteMatch();
-  const quote = DUMMY_QUOTES.find((q) => q.id === params.quoteId);
 
-  if (!quote) {
+  const { quoteId } = params;
+  const {sendRequest, status, data: loadedQuote, error} = useHttp(getSingleQuote, true);
+
+  useEffect(() => {
+    sendRequest(quoteId);
+  },[sendRequest, quoteId]);
+
+  if (status === 'pending') {
+    return <div className="centered">
+      <LoadingSpinner />
+    </div>
+  };
+
+  if (error) {
+    return <p className="centered">{error}</p>
+  }
+  if (!loadedQuote.text) {
     return <p>No Quote Found</p>;
   }
 
   return (
     <Fragment>
-      <HighlightedQuote text={quote.text} author={quote.autor} />
+      <HighlightedQuote text={loadedQuote.text} author={loadedQuote.author} />
       <Route path={`${match.path}`} exact>
         <div className="centered">
           <Link className="btn--flat" to={`${match.url}/comments`}>
